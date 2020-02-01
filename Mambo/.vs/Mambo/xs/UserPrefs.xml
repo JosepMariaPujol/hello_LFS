@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{CB51030D-F434-E701-6E7E-C96F09BDA98C}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ChatManager.cs">
+    <Files>
+      <File FileName="Assets/Scripts/SignUpManager.cs" Line="127" Column="1" />
+      <File FileName="Assets/Scripts/UserManager.cs" />
+      <File FileName="Assets/Scripts/ChatManager.cs" Line="85" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Mambo" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="ChatManager.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="e43edc97-5138-4da7-8f30-33ef1f4c5c37" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
