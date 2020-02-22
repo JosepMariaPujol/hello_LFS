@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class UserManager : MonoBehaviour
 {
-    private GameObject c1, c2, c22, c3;
-    private InputField if1, if2, if22;
+    private GameObject c1, c2, c3;
+    private InputField if1, if2;
     private Text te;
     //private string url = "http://localhost:5000/msgs/api/v1.0/users";
     private string url = "http://pdm-missatges.herokuapp.com/msgs/api/v1.0/users";
@@ -44,6 +44,8 @@ public class UserManager : MonoBehaviour
         else
         {
             Debug.Log("request ok:" + www.text);
+            Debug.Log("request 1:" + if1.text);
+            Debug.Log("request 2:" + if2.text);
             PlayerPrefs.SetString("usuario", if1.text);
             PlayerPrefs.SetString("password", if2.text);
             SceneManager.LoadScene("ChatScene");

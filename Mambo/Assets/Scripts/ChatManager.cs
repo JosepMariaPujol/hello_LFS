@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [Serializable]
@@ -18,13 +19,12 @@ public class Msg
 
 public class ChatManager : MonoBehaviour
 {
-    private GameObject c1, c2;
-    private InputField if1;
-    private Text t;
+    private GameObject c1, c2, c3, c4, c5, c6;
+    private InputField if1, if4, if5, if6;
+    private Text t, userName;
+
     //private string url = "http://localhost:5000/msgs/api/v1.0/messages";
     private string url = "http://pdm-missatges.herokuapp.com/msgs/api/v1.0/messages";
-    //private string url2 = "http://localhost:5000/msgs/api/v1.0/clear";
-    private string url2 = "http://pdm-missatges.herokuapp.com/msgs/api/v1.0/clear";
 
     void Start()
     {
@@ -32,7 +32,29 @@ public class ChatManager : MonoBehaviour
         if1 = c1.GetComponent<InputField>();
         c2 = GameObject.Find("ChatText");
         t = c2.GetComponent<Text>();
+        c3 = GameObject.Find("UserText");
+        userName = c3.GetComponent<Text>();
+
+        c4 = GameObject.Find("CurrentPasswordInputField");
+        if4 = c4.GetComponent<InputField>();
+        c5 = GameObject.Find("NewPasswordInputField");
+        if5 = c5.GetComponent<InputField>();
+        c6 = GameObject.Find("RepeatPasswordInputField");
+        if6 = c6.GetComponent<InputField>();
+
+        ProfileName();
         StartCoroutine(missatges());
+    }
+    
+    private void ProfileName()
+    {       
+        string user = PlayerPrefs.GetString("usuario");
+        userName.text = user;
+    }
+
+    public void LogOut()
+    {
+        SceneManager.LoadScene("UserScene");
     }
 
     private IEnumerator missatges()
@@ -56,7 +78,7 @@ public class ChatManager : MonoBehaviour
             t.text = "";
             foreach (Msg m in msgs.data)
             {
-                t.text += m.autor + "\t" + m.tiempo + "\n" + m.texto + "\n";
+                t.text += "<b>" + m.autor + "</b>" + "\t" + "<i>" + m.tiempo + "</i>" + "\n" + m.texto + "\n" + "\n";
             }
         }
     }
@@ -96,7 +118,7 @@ public class ChatManager : MonoBehaviour
         var headers = form.headers;
         string credencials = PlayerPrefs.GetString("usuario") + ":" + PlayerPrefs.GetString("password");
         headers["Authorization"] = "Basic " + Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(credencials));
-        WWW www = new WWW(url2, null, headers);
+        WWW www = new WWW(url, null, headers);
         yield return www;
 
         /// Print the error to the console
@@ -111,8 +133,79 @@ public class ChatManager : MonoBehaviour
         }
     }
 
+    private IEnumerator ContrasenyaUsuari()
+    {
+        yield return null;
+
+        /*
+
+        if(if4.text == PlayerPrefs.GetString("password"))
+        {
+            if(if5.text == if6.text)
+            {
+                if(if4.text != if5.text)
+                {
+                    Debug.Log("OLD PASSWORD" + PlayerPrefs.GetString("password"));
+
+                    /*
+                        PlayerPrefs.SetString("password", if5.text);
+                        Debug.Log("NEW PASSWORD" + PlayerPrefs.GetString("password"));
+
+                        if4.text = "";
+                        if5.text = "";
+                        if6.text = "";
+                    
+
+                    WWWForm form = new WWWForm();
+                    Debug.Log(userName.text);
+                    form.AddField("nombre", userName.text + "a");
+                    form.AddField("password", if5.text);
+
+
+                    WWW www = new WWW(url, form);
+
+                    yield return www;
+
+                    // Print the error to the console
+                    if (www.error != null)
+                    {
+                        Debug.Log("request error: " + www.error);
+                    }
+                    else
+                    {
+                        PlayerPrefs.SetString("password", if5.text);
+                        Debug.Log("NEW PASSWORD" + PlayerPrefs.GetString("password"));
+
+                        if4.text = "";
+                        if5.text = "";
+                        if6.text = "";
+                    }
+
+                }
+                else
+                {
+                    Debug.Log("ERROR Same Password");
+                }
+            }
+            else
+            {
+                Debug.Log("ERROR Wrong New password");
+            }
+        }
+        else
+        {
+            Debug.Log("ERROR Wrong password");
+        }
+    */
+    }
+
     public void clicNetejar()
     {
         StartCoroutine(netejar());
+    }
+
+    public void ClicContrasenya()
+    {
+        StartCoroutine(ContrasenyaUsuari());
     }
 }

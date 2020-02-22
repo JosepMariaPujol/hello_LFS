@@ -112,31 +112,7 @@ public class SignUpManager : MonoBehaviour
 
     private IEnumerator CrearUsuari()
     {
-        WWWForm form = new WWWForm();
-
-        form.AddField("nombre", if1.text);
-        form.AddField("password", if2.text);
-        form.AddField("day", dayDropdown.value);
-        form.AddField("month", monthDropdown.value);
-        form.AddField("year", yearDropdown.value);
-        form.AddField("female", femaleToggle.isOn.ToString());
-        form.AddField("male", maleToggle.isOn.ToString());
-
-        WWW www = new WWW(url, form);
-
-        Debug.Log(form.data);
-        Debug.Log(url);
-        Debug.Log(www);
-
-        yield return www;
-
-        // Print the error to the console
-        if (www.error != null)
-        {
-            Debug.Log("request error: " + www.error);
-            te.text = "Error: " + www.error;
-        }
-        else if (if2.text != if22.text)
+        if (if2.text != if22.text)
         {
             Debug.Log("Error: password");
             te.text = "Error: password";
@@ -153,12 +129,38 @@ public class SignUpManager : MonoBehaviour
         }
         else
         {
-            //Debug.Log("--------- " + if2.text + " - " + if22.text);
-            Debug.Log("request ok:" + www.text);
+            WWWForm form = new WWWForm();
 
-            PlayerPrefs.SetString("usuario", if1.text);
-            PlayerPrefs.SetString("password", if2.text);
-            SceneManager.LoadScene("ChatScene");
+            form.AddField("nombre", if1.text);
+            form.AddField("password", if2.text);
+            form.AddField("day", dayDropdown.value);
+            form.AddField("month", monthDropdown.value);
+            form.AddField("year", yearDropdown.value);
+            form.AddField("female", femaleToggle.isOn.ToString());
+            form.AddField("male", maleToggle.isOn.ToString());
+
+            WWW www = new WWW(url, form);
+
+            Debug.Log(form.data);
+            Debug.Log(url);
+            Debug.Log(www);
+
+            yield return www;
+
+            // Print the error to the console
+            if (www.error != null)
+            {
+                Debug.Log("request error: " + www.error);
+                te.text = "Error: " + www.error;
+            }
+            else
+            {
+                Debug.Log("request ok:" + www.text);
+                PlayerPrefs.SetString("usuario", if1.text);
+                PlayerPrefs.SetString("password", if2.text);
+                SceneManager.LoadScene("ChatScene");
+            }
+
         }
     }
 
