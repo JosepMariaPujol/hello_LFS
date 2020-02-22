@@ -78,7 +78,7 @@ public class ChatManager : MonoBehaviour
             t.text = "";
             foreach (Msg m in msgs.data)
             {
-                t.text += "<b>" + m.autor + "</b>" + "\t" + "<i>" + m.tiempo + "</i>" + "\n" + m.texto + "\n" + "\n";
+                t.text += "<b>" + m.autor + "</b>" + "\t" + "<i>" + "<size=+25>" + m.tiempo + "</size>" + "</i>" + "\n" + m.texto + "\n" + "\n";
             }
         }
     }
