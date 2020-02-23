@@ -5,14 +5,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using TMPro;
 
 
 public class SignUpManager : MonoBehaviour
 {
     private GameObject c1, c2, c22, c3, gameObjectFemaleToggle, gameObjectMaleToggle;
     private GameObject gameObjectDayDropdown, gameObjectMonthDropdown, gameObjectYearDropdown;
-    private InputField if1, if2, if22;
-    private Text te;
+    private TMP_InputField if1, if2, if22;
+    private TMP_Text te;
     private Toggle femaleToggle, maleToggle;
     private Dropdown dayDropdown, monthDropdown, yearDropdown;
     //private string url = "http://localhost:5000/msgs/api/v1.0/users";
@@ -24,16 +25,16 @@ public class SignUpManager : MonoBehaviour
     void Start()
     {
         c1 = GameObject.Find("UserInputField");
-        if1 = c1.GetComponent<InputField>();
+        if1 = c1.GetComponent<TMP_InputField>();
 
         c2 = GameObject.Find("PasswordInputField");
-        if2 = c2.GetComponent<InputField>();
+        if2 = c2.GetComponent<TMP_InputField>();
 
         c22 = GameObject.Find("PasswordRepeatInputField");
-        if22 = c22.GetComponent<InputField>();
+        if22 = c22.GetComponent<TMP_InputField>();
 
         c3 = GameObject.Find("InfoText");
-        te = c3.GetComponent<Text>();
+        te = c3.GetComponent<TMP_Text>();
 
         gameObjectFemaleToggle = GameObject.Find("FemaleToggle");
         femaleToggle = gameObjectFemaleToggle.GetComponent<Toggle>();

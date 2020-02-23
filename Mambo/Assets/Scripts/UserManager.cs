@@ -4,25 +4,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class UserManager : MonoBehaviour
 {
     private GameObject c1, c2, c3;
-    private InputField if1, if2;
-    private Text te;
+    private TMP_InputField if1, if2;
+    private TMP_Text te;
     //private string url = "http://localhost:5000/msgs/api/v1.0/users";
     private string url = "http://pdm-missatges.herokuapp.com/msgs/api/v1.0/users";
 
     void Start()
     {
         c1 = GameObject.Find("UserInputField");
-        if1 = c1.GetComponent<InputField>();
+        if1 = c1.GetComponent<TMP_InputField>();
 
         c2 = GameObject.Find("PasswordInputField");
-        if2 = c2.GetComponent<InputField>();
+        if2 = c2.GetComponent<TMP_InputField>();
 
         c3 = GameObject.Find("InfoText");
-        te = c3.GetComponent<Text>();
+        te = c3.GetComponent<TMP_Text>();
     }
 
     private IEnumerator EntrarUsuari()

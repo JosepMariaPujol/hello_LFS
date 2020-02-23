@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 [Serializable]
 public class Msgs
@@ -20,8 +21,12 @@ public class Msg
 public class ChatManager : MonoBehaviour
 {
     private GameObject c1, c2, c3, c4, c5, c6;
-    private InputField if1, if4, if5, if6;
-    private Text t, userName;
+    private InputField if4, if5, if6;
+
+    private TMP_Text t, userName;
+    public TMP_InputField if1;
+
+
 
     //private string url = "http://localhost:5000/msgs/api/v1.0/messages";
     private string url = "http://pdm-missatges.herokuapp.com/msgs/api/v1.0/messages";
@@ -29,11 +34,11 @@ public class ChatManager : MonoBehaviour
     void Start()
     {
         c1 = GameObject.Find("MessageInputField");
-        if1 = c1.GetComponent<InputField>();
+        if1 = c1.GetComponent<TMP_InputField>();
         c2 = GameObject.Find("ChatText");
-        t = c2.GetComponent<Text>();
+        t = c2.GetComponent<TMP_Text>();
         c3 = GameObject.Find("UserText");
-        userName = c3.GetComponent<Text>();
+        userName = c3.GetComponent<TMP_Text>();
 
         c4 = GameObject.Find("CurrentPasswordInputField");
         if4 = c4.GetComponent<InputField>();
@@ -78,7 +83,7 @@ public class ChatManager : MonoBehaviour
             t.text = "";
             foreach (Msg m in msgs.data)
             {
-                t.text += "<b>" + m.autor + "</b>" + "\t" + "<i>" + "<size=+25>" + m.tiempo + "</size>" + "</i>" + "\n" + m.texto + "\n" + "\n";
+                t.text += "<b>" + m.autor + "</b>" + "\t" + "<i>" + "<size=25>" + m.tiempo + "</size>" + "</i>" + "\n" + m.texto + "\n" + "\n";
             }
         }
     }
